@@ -1,0 +1,26 @@
+<!-- shop/templates/shop/product_detail.html -->
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.title }}</title>
+</head>
+<body>
+
+    {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.title }}" class="img-fluid mb-3" style="max-width: 400px;">
+    {% endif %}
+    <h1>{{ product.title }}</h1>
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Stock: {{ product.stock }}</p>
+
+
+    <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+    <p><a href="{% url 'product_list' %}">Back to list</a></p>
+
+
+</body>
+</html>
+{% endblock %}

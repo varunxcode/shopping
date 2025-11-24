@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Order History</h2>
+{% if orders %}
+<ul>
+    {% for order in orders %}
+    <li>
+        Order #{{ order.id }} - {{ order.created_at|date:"SHORT_DATETIME_FORMAT" }}
+        <ul>
+            {% for item in order.orderitem_set.all %}
+            <li>{{ item.product.title }} — x{{ item.quantity }} — ₹{{ item.price }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>You have no orders yet.</p>
+{% endif %}
+{% endblock %}
